@@ -6,7 +6,7 @@ export const EVENT_DATA = [
     description:
       'The Renaissance period marks the revival of art, culture, and learning in Europe, leading to significant advancements in science, art, and philosophy.',
     image: '../assets/one.jpeg',
-    video: 'https://www.youtube.com/embed/J9wX2Q3txgs',
+    video: 'https://www.youtube.com/embed/LNvq0Qecb8g',
   },
   {
     id: 2,
@@ -14,7 +14,7 @@ export const EVENT_DATA = [
     date: '1776',
     description: `'The Declaration of Independence was adopted by the Continental Congress, declaring the 13 American colonies independent from British rule and laying the foundation for the United States.'`,
     image: '../assets/two.jpeg',
-    video: 'https://www.youtube.com/embed/_LVYwAaEymw',
+    video: 'https://www.youtube.com/embed/P2GIoBO-uys',
   },
   {
     id: 3,
@@ -23,7 +23,7 @@ export const EVENT_DATA = [
     description:
       'The fall of the Berlin Wall symbolized the end of the Cold War and the reunification of East and West Germany, marking a significant moment in modern history.',
     image: '../assets/three.jpeg',
-    video: 'https://www.youtube.com/embed/2aRJl8qfBzg',
+    video: 'https://www.youtube.com/embed/A9fQPzZ1-hg',
   },
   {
     id: 4,
@@ -32,7 +32,7 @@ export const EVENT_DATA = [
     description:
       "Neil Armstrong and Buzz Aldrin became the first humans to land on the Moon during NASA's Apollo 11 mission, a monumental achievement in space exploration.",
     image: '../assets/four.webp',
-    video: 'https://www.youtube.com/embed/RMINSD7MmT4',
+    video: 'https://www.youtube.com/embed/cwZb2mqId0A',
   },
   {
     id: 5,
@@ -41,7 +41,7 @@ export const EVENT_DATA = [
     description:
       'The French Revolution was a period of radical social and political upheaval in France, resulting in the overthrow of the monarchy and the rise of Napoleon Bonaparte.',
     image: '../assets/five.jpeg',
-    video: 'https://www.youtube.com/embed/h3KMIJDdt8E',
+    video: 'https://www.youtube.com/embed/PBn7iWzrKoI',
   },
   {
     id: 6,
@@ -50,7 +50,7 @@ export const EVENT_DATA = [
     description:
       "Johannes Gutenberg's invention of the printing press revolutionized the spread of knowledge and information, fueling the Renaissance and shaping the modern world.",
     image: '../assets/six.jpeg',
-    video: 'https://www.youtube.com/embed/k7lIYF-3L10',
+    video: 'https://www.youtube.com/embed/Bhbl0eDGmsA',
   },
   {
     id: 7,
@@ -59,7 +59,7 @@ export const EVENT_DATA = [
     description:
       'The Industrial Revolution was a period of rapid industrialization, technological advancement, and urbanization, transforming economies and societies worldwide.',
     image: '../assets/seven.webp',
-    video: 'https://www.youtube.com/embed/zhL5DCizj5c',
+    video: 'https://www.youtube.com/embed/9xf1Lsy4CZ8',
   },
   {
     id: 8,
@@ -68,7 +68,7 @@ export const EVENT_DATA = [
     description:
       "World War II was a global conflict involving most of the world's nations, characterized by significant military and civilian casualties, and major atrocities, leading to profound geopolitical changes.",
     image: '../assets/eight.jpeg',
-    video: 'https://www.youtube.com/embed/_vVpPEBpqIo',
+    video: 'https://www.youtube.com/embed/AUXIuYHFgBE',
   },
   {
     id: 9,
@@ -77,7 +77,7 @@ export const EVENT_DATA = [
     description:
       "The Women's Suffrage Movement fought for women's right to vote and for equality with men, leading to significant social and political changes worldwide.",
     image: '../assets/nine.jpeg',
-    video: 'https://www.youtube.com/embed/I7xAfZs-6Mg',
+    video: 'https://www.youtube.com/embed/_KhYRqozTDE',
   },
   {
     id: 10,
@@ -86,6 +86,6 @@ export const EVENT_DATA = [
     description:
       "The end of apartheid marked the beginning of a new era in South African history, characterized by democracy, equality, and reconciliation, under Nelson Mandela's leadership.",
     image: '../assets/ten.jpeg',
-    video: 'https://www.youtube.com/embed/OzZaTpsDZKs',
+    video: 'https://www.youtube.com/embed/ke4kVFycpYY',
   },
 ];
