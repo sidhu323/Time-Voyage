@@ -1,0 +1,21 @@
+<div class="timeline" #timeline>
+  <div class="timeline-background"></div>
+  <app-search (searchEvent)="filterEvents($event)"></app-search>
+  <div class="timeline-events">
+    <div class="timeline-line"></div>
+    <div class="timeline-cards">
+      <div
+        class="timeline-card"
+        *ngFor="let event of filteredEvents; let i = index"
+        [ngClass]="{ 'left-card': i % 2 === 0, 'right-card': i % 2 !== 0 }"
+        [@cardAnimation]="event.id"
+      >
+        <div class="timeline-point" [@pointAnimation]="event.id">
+          <div class="timeline-point-inner"></div>
+        </div>
+        <app-event-card [event]="event"></app-event-card>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- [style.opacity]="getCardOpacity(i)" -->
