@@ -24,6 +24,7 @@ import { EventCardComponent } from '../event-card/event-card.component';
 import { EventDetailsComponent } from '../event-details/event-details.component';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { bootstrapApplication } from '@angular/platform-browser';
+import { title } from '../../constants/sample-data';
 
 @Component({
   selector: 'app-timeline',
@@ -69,6 +70,7 @@ export default class TimelineComponent implements OnInit {
   filteredEvents!: any[];
   activeIndex = 0;
   isGreen: string = 'true';
+  title: string = title;
 
   @ViewChild('timelineWrapper', { static: true }) timelineWrapper!: ElementRef;
   @ViewChildren(EventCardComponent, { read: ElementRef })
@@ -120,7 +122,7 @@ export default class TimelineComponent implements OnInit {
   }
 
   toggleIsCorrect() {
-    this.isGreen = this.isGreen === 'true' ? 'false' : 'true'; // change in data-bound value
+    this.isGreen = this.isGreen === 'true' ? 'false' : 'true';
   }
 }
 

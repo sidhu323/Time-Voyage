@@ -1,8 +1,11 @@
 <div class="timeline-container">
   <div class="timeline-header">
-    <h1>Ideals are peaceful. History is violent.</h1>
+    <h1>{{ title }}</h1>
   </div>
-
+  <app-search
+    class="timeline-search"
+    (searchEvent)="filterEvents($event)"
+  ></app-search>
   <div class="timeline-strip">
     <div class="timeline-line"></div>
     <div class="timeline-dates">

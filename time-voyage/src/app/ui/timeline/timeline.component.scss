@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+@import '../../constants/variable';
+
 
 :host {
     display: block;
@@ -19,20 +21,23 @@
   
   .timeline-header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 15px;
   
     h1 {
       font-size: 56px;
-      color: #fff;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+      color: $white-color;
+      text-shadow: 2px 2px 4px rgba($black-color, 0.8);
       font-family: 'Playfair Display', serif;
     }
   }
-  
+  .timeline-search{
+    margin-left: auto;
+    margin-bottom: 30px;
+  }
   .timeline-strip {
     position: sticky;
     top: 0;
-    // background-color: #fff;
+    // background-color: $white-color;
     z-index: 1;
     width: 100%;
     padding: 20px 0;
@@ -45,7 +50,7 @@
     left: 0;
     width: 100%;
     height: 6px;
-    background-color: #b9a8a8ab;
+    background-color: $timeline-color;
     transform: translateY(-50%);
     z-index: -1;
   }
@@ -67,12 +72,12 @@
       transform: scale(1.4);
   
       .date-text {
-        color: #ff0000;
+        color: $primary-color;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
       }
   
       .date-marker {
-        background-color: #ff0000;
+        background-color: $primary-color;
         box-shadow: 0 0 0 6px rgba(255, 0, 0, 0.4);
         animation: ripple 1s infinite;
       }
@@ -95,7 +100,7 @@
   .date-text {
   font-size: 24px;
   font-weight: bold;
-  color: #fff;
+  color: $white-color;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
@@ -106,8 +111,8 @@
     left: 50%;
     width: 16px;
     height: 16px;
-    background-color: #fff;
-    border: 4px solid #ff0000;
+    background-color: $white-color;
+    border: 4px solid $primary-color;
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -161,12 +166,85 @@
       transition: color 0.3s ease;
   
       &:hover {
-        color: #ff0000;
+        color: $primary-color;
       }
   
       &:disabled {
         color: #ccc;
         cursor: not-allowed;
       }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .timeline-header {
+      h1 {
+        font-size: 36px;
+      }
+    }
+  
+    .timeline-strip {
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 20px;
+  
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  
+    .timeline-dates {
+      width: max-content;
+      justify-content: flex-start;
+      padding: 0;
+    }
+  
+    .timeline-date {
+      flex-shrink: 0;
+      margin-right: 30px;
+    }
+  
+    .date-text {
+      font-size: 20px;
+    }
+  
+    .date-marker {
+      top: -25px;
+      width: 12px;
+      height: 12px;
+    }
+  
+    app-event-card {
+      width: 250px;
+      margin: 0 10px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .timeline-header {
+      h1 {
+        font-size: 28px;
+      }
+    }
+  
+    .timeline-date {
+      margin-right: 20px;
+    }
+  
+    .date-text {
+      font-size: 16px;
+    }
+  
+    .date-marker {
+      top: -20px;
+      width: 10px;
+      height: 10px;
+    }
+  
+    app-event-card {
+      width: 200px;
+      margin: 0 5px;
     }
   }

@@ -95,3 +95,5 @@ export const EVENT_DATA = [
     video: 'https://www.youtube.com/embed/ke4kVFycpYY',
   },
 ];
+
+export const title = 'Ideals are peaceful. History is violent.';

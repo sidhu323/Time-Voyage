@@ -1,3 +1,4 @@
+@import '../../constants/variable';
 .event-card {
     display: flex;
     flex-direction: column;
@@ -37,7 +38,7 @@
   .event-date {
     font-size: 24px;
     font-weight: bold;
-    color: #ff0000;
+    color: $primary-color;
     margin-bottom: 15px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
   }
@@ -47,4 +48,45 @@
     margin-bottom: 15px;
     color: #333;
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .event-card-image {
+      height: 200px;
+    }
+  
+    .event-card-content {
+      padding: 20px;
+    }
+  
+    .event-date {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+  
+    h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .event-card-image {
+      height: 160px;
+    }
+  
+    .event-card-content {
+      padding: 15px;
+    }
+  
+    .event-date {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+  
+    h2 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
   }
