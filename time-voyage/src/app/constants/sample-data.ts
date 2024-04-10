@@ -2,7 +2,7 @@ export const EVENT_DATA = [
   {
     id: 1,
     title: 'The Renaissance Begins',
-    date: '14th Century',
+    date: '1400',
     description:
       'The Renaissance period marks the revival of art, culture, and learning in Europe, leading to significant advancements in science, art, and philosophy.',
     image: '../assets/one.jpeg',
@@ -55,7 +55,7 @@ export const EVENT_DATA = [
   {
     id: 7,
     title: 'Industrial Revolution',
-    date: '18th-19th Century',
+    date: '1800',
     description:
       'The Industrial Revolution was a period of rapid industrialization, technological advancement, and urbanization, transforming economies and societies worldwide.',
     image: '../assets/seven.webp',
@@ -64,7 +64,7 @@ export const EVENT_DATA = [
   {
     id: 8,
     title: 'World War II',
-    date: '1939-1945',
+    date: '1939',
     description:
       "World War II was a global conflict involving most of the world's nations, characterized by significant military and civilian casualties, and major atrocities, leading to profound geopolitical changes.",
     image: '../assets/eight.jpeg',
@@ -73,7 +73,7 @@ export const EVENT_DATA = [
   {
     id: 9,
     title: "Women's Suffrage Movement",
-    date: '19th-20th Century',
+    date: '1956',
     description:
       "The Women's Suffrage Movement fought for women's right to vote and for equality with men, leading to significant social and political changes worldwide.",
     image: '../assets/nine.jpeg',

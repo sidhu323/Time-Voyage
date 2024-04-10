@@ -25,30 +25,34 @@ import { EventCardComponent } from '../event-card/event-card.component';
   imports: [CommonModule, EventCardComponent, SearchComponent, MaterialModule],
   templateUrl: './timeline.component.html',
   styleUrl: './timeline.component.scss',
-  animations: [
-    trigger('cardAnimation', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(100px) rotateY(-60deg)' }),
-        animate(
-          '500ms ease',
-          style({ opacity: 1, transform: 'translateY(0) rotateY(0)' })
-        ),
-      ]),
-    ]),
-    trigger('pointAnimation', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'scale(0) translateX(-50%)' }),
-        animate(
-          '500ms ease',
-          style({ opacity: 1, transform: 'scale(1) translateX(-50%)' })
-        ),
-      ]),
-    ]),
-  ],
+  // animations: [
+  //   trigger('cardAnimation', [
+  //     transition(':enter', [
+  //       style({ opacity: 0, transform: 'translateY(100px) rotateY(-60deg)' }),
+  //       animate(
+  //         '500ms ease',
+  //         style({ opacity: 1, transform: 'translateY(0) rotateY(0)' })
+  //       ),
+  //     ]),
+  //   ]),
+  //   trigger('pointAnimation', [
+  //     transition(':enter', [
+  //       style({ opacity: 0, transform: 'scale(0) translateX(-50%)' }),
+  //       animate(
+  //         '500ms ease',
+  //         style({ opacity: 1, transform: 'scale(1) translateX(-50%)' })
+  //       ),
+  //     ]),
+  //   ]),
+  // ],
 })
 export default class TimelineComponent implements OnInit {
   events!: any[];
   filteredEvents!: any[];
+  currentIndex = 0;
+  visibleEventsCount = 4;
+  visibleEvents!: any[];
+  activeIndex = 0;
 
   @ViewChild('timeline', { static: true }) timelineRef!: ElementRef;
 
@@ -58,23 +62,42 @@ export default class TimelineComponent implements OnInit {
     this.eventService.getEvents().subscribe((events) => {
       this.events = events;
       this.filteredEvents = events;
+      this.updateVisibleEvents();
     });
   }
 
-  filterEvents(query: any) {
-    this.filteredEvents = this.events.filter((event) =>
-      event.title.toLowerCase().includes(query.toLowerCase())
+  filterEvents(query: string) {
+    this.filteredEvents = this.events.filter(
+      (event) =>
+        event.title.toLowerCase().includes(query.toLowerCase()) ||
+        event.date.toLowerCase().includes(query.toLowerCase()) ||
+        event.description.toLowerCase().includes(query.toLowerCase())
     );
+    this.currentIndex = 0;
+    this.updateVisibleEvents();
+  }
+  scrollLeft() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+      this.updateVisibleEvents();
+    }
   }
 
-  applyParallaxEffect() {
-    const timeline = this.timelineRef.nativeElement;
-    window.addEventListener('scroll', () => {
-      const scrollPosition = window.pageYOffset;
-      const timelineTop =
-        timeline.getBoundingClientRect().top + window.pageYOffset;
-      const parallaxEffect = (scrollPosition - timelineTop) * 0.5;
-      timeline.style.backgroundPositionY = `${parallaxEffect}px`;
-    });
+  scrollRight() {
+    if (
+      this.currentIndex + this.visibleEventsCount <
+      this.filteredEvents.length
+    ) {
+      this.currentIndex++;
+      this.updateVisibleEvents();
+    }
+  }
+
+  updateVisibleEvents() {
+    this.visibleEvents = this.filteredEvents.slice(
+      this.currentIndex,
+      this.currentIndex + this.visibleEventsCount
+    );
+    this.activeIndex = this.currentIndex;
   }
 }

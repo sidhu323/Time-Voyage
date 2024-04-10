@@ -1,21 +1,41 @@
-<div class="timeline" #timeline>
-  <div class="timeline-background"></div>
-  <app-search (searchEvent)="filterEvents($event)"></app-search>
-  <div class="timeline-events">
-    <div class="timeline-line"></div>
-    <div class="timeline-cards">
-      <div
-        class="timeline-card"
-        *ngFor="let event of filteredEvents; let i = index"
-        [ngClass]="{ 'left-card': i % 2 === 0, 'right-card': i % 2 !== 0 }"
-        [@cardAnimation]="event.id"
-      >
-        <div class="timeline-point" [@pointAnimation]="event.id">
-          <div class="timeline-point-inner"></div>
+<div class="timeline-container">
+  <div class="timeline-header">
+    <h2>Timeline</h2>
+    <app-search (searchEvent)="filterEvents($event)"></app-search>
+  </div>
+  <div class="timeline" #timeline>
+    <div class="timeline-events">
+      <div class="timeline-cards">
+        <div
+          class="timeline-card"
+          *ngFor="let event of visibleEvents; let i = index"
+          [ngClass]="{ 'top-card': i % 2 === 0, 'bottom-card': i % 2 !== 0 }"
+        >
+          <app-event-card
+            [event]="event"
+            [isTopCard]="i % 2 === 0"
+          ></app-event-card>
+          <div class="timeline-point" [ngClass]="{ active: i === activeIndex }">
+            <div class="timeline-point-inner"></div>
+          </div>
+          <div class="timeline-date-title">
+            <div class="timeline-date">{{ event.date }}</div>
+            <div class="timeline-title">{{ event.title }}</div>
+          </div>
         </div>
-        <app-event-card [event]="event"></app-event-card>
       </div>
+      <div class="timeline-line"></div>
+    </div>
+    <div class="timeline-navigation">
+      <button (click)="scrollLeft()" [disabled]="currentIndex === 0">
+        &#8249;
+      </button>
+      <button
+        (click)="scrollRight()"
+        [disabled]="currentIndex + visibleEventsCount >= filteredEvents.length"
+      >
+        &#8250;
+      </button>
     </div>
   </div>
 </div>
-<!-- [style.opacity]="getCardOpacity(i)" -->

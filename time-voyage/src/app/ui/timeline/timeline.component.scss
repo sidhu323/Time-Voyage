@@ -1,99 +1,160 @@
-.timeline {
-    background-color: #f0f0f0;
-    padding: 20px;
-    overflow-y: scroll;
-    perspective: 1000px;
-  }
-  
-  .timeline-events {
-    position: relative;
-    padding: 20px 0;
-    min-height: 100vh;
-  }
-  
-  .timeline-line {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 2px;
-    height: 100%;
-    background-color: #888;
-    transform: translateX(-50%);
-  }
-  
-  .timeline-cards {
-    position: relative;
-    width: 100%;
-    padding: 0 20px;
-  }
-  
-  .timeline-card {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-bottom: 40px;
-  }
-  
-  .left-card {
-    justify-content: flex-start;
-  }
-  
-  .right-card {
-    justify-content: flex-end;
-  }
-  
-  .timeline-point {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    background-color: #888;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  
-  .timeline-point:hover {
-    transform: translate(-50%, -50%) scale(1.5);
-  }
-  
-  .timeline-point-inner {
-    width: 10px;
-    height: 10px;
-    background-color: #fff;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation: pulse 2s infinite;
-  }
-  
-  @keyframes pulse {
-    0% {
-      transform: translate(-50%, -50%) scale(0.8);
-      opacity: 0.7;
+.timeline-container {
+    padding: 40px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+    background: url('../../../assets/history.jpg');
+    
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      
+      h2 {
+        font-size: 24px;
+        margin: 0;
+      }
     }
-    50% {
-      transform: translate(-50%, -50%) scale(1.2);
-      opacity: 1;
+    
+    .timeline {
+      position: relative;
+      padding: 20px;
+      overflow-x: hidden;
+      width: 100%;
+      
+      .timeline-events {
+        position: relative;
+        padding: 20px 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        
+        .timeline-cards {
+          position: relative;
+          display: flex;
+          width: 100%;
+          padding: 0 20px;
+          transition: transform 0.5s ease;
+          
+          .timeline-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 40px;
+            
+            .timeline-point {
+              position: absolute;
+              width: 30px;
+              height: 30px;
+              background-color: #fff;
+              border-radius: 50%;
+              cursor: pointer;
+              transition: transform 0.3s ease;
+              border: 2px solid #000;
+              z-index: 1;
+              left: 50%;
+              transform: translateX(-50%);
+              
+              &:hover {
+                transform: translateX(-50%) scale(1.5);
+              }
+              
+              &.active {
+                background-color: #f00;
+                border-color: #f00;
+                box-shadow: 0 0 10px #f00;
+                
+                .timeline-point-inner {
+                  background-color: #fff;
+                }
+              }
+              
+              .timeline-point-inner {
+                width: 20px;
+                height: 20px;
+                background-color: #000;
+                border-radius: 50%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+              }
+            }
+            
+            .timeline-date {
+              position: absolute;
+              left: 50%;
+              transform: translateX(-50%);
+              font-size: 18px;
+              font-weight: bold;
+              color: #fff;
+              background-color: rgba(0, 0, 0, 0.7);
+              padding: 5px 10px;
+              border-radius: 5px;
+              white-space: nowrap;
+            }
+            
+            &.top-card {
+              margin-top: -150px;
+              
+              .timeline-point {
+                top: calc(100% + 15px);
+              }
+              
+              .timeline-date {
+                top: calc(100% + 50px);
+              }
+            }
+            
+            &.bottom-card {
+              margin-top: 150px;
+              
+              .timeline-point {
+                bottom: calc(100% + 15px);
+              }
+              
+              .timeline-date {
+                bottom: calc(100% + 50px);
+              }
+            }
+            
+            app-event-card {
+              width: 400px;
+            }
+          }
+        }
+        
+        .timeline-line {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 100%;
+          height: 4px;
+          background-color: #fff;
+          transform: translateY(-50%);
+        }
+      }
+      
+      .timeline-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        
+        button {
+          background: none;
+          border: none;
+          font-size: 24px;
+          cursor: pointer;
+          color: #fff;
+          
+          &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
+        }
+      }
     }
-    100% {
-      transform: translate(-50%, -50%) scale(0.8);
-      opacity: 0.7;
-    }
-  }
-  
-  app-event-card {
-    width: 45%;
-  }
-  
-  .left-card app-event-card {
-    margin-left: 30px;
-  }
-  
-  .right-card app-event-card {
-    margin-right: 30px;
   }

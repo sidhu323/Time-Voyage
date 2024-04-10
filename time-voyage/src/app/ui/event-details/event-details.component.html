@@ -4,5 +4,5 @@
     <iframe [src]="event.video | safe" frameborder="0" allowfullscreen></iframe>
   </div>
   <p>{{ event.description }}</p>
-  <button mat-button mat-dialog-close>Close</button>
+  <span class="close-icon" (click)="closeDialog()">X</span>
 </div>

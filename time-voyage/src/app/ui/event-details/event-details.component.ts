@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SafePipe } from '../../shared/pipes/safe.pipe';
 
 @Component({
@@ -10,5 +10,12 @@ import { SafePipe } from '../../shared/pipes/safe.pipe';
   imports: [SafePipe],
 })
 export class EventDetailsComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public event: any) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public event: any,
+    private dialogRef: MatDialogRef<EventDetailsComponent>
+  ) {}
+
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
 }
