@@ -1,160 +1,172 @@
-.timeline-container {
-    padding: 40px;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
+:host {
+    display: block;
+    min-height: 100vh;
+    background-image: url('../../../assets/history.jpg');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    color: #fff;
-    background: url('../../../assets/history.jpg');
-    
-    .timeline-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      
-      h2 {
-        font-size: 24px;
-        margin: 0;
+    background-attachment: fixed;
+  }
+  
+
+  .timeline-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+  
+  .timeline-header {
+    text-align: center;
+    margin-bottom: 60px;
+  
+    h1 {
+      font-size: 56px;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+      font-family: 'Playfair Display', serif;
+    }
+  }
+  
+  .timeline-strip {
+    position: sticky;
+    top: 0;
+    // background-color: #fff;
+    z-index: 1;
+    width: 100%;
+    padding: 20px 0;
+  }
+  
+  
+.timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background-color: #b9a8a8ab;
+    transform: translateY(-50%);
+    z-index: -1;
+  }
+  
+  .timeline-dates {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+ 
+.timeline-date {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  
+    &.active {
+      transform: scale(1.4);
+  
+      .date-text {
+        color: #ff0000;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+      }
+  
+      .date-marker {
+        background-color: #ff0000;
+        box-shadow: 0 0 0 6px rgba(255, 0, 0, 0.4);
+        animation: ripple 1s infinite;
       }
     }
-    
-    .timeline {
-      position: relative;
-      padding: 20px;
-      overflow-x: hidden;
-      width: 100%;
-      
-      .timeline-events {
-        position: relative;
-        padding: 20px 0;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        
-        .timeline-cards {
-          position: relative;
-          display: flex;
-          width: 100%;
-          padding: 0 20px;
-          transition: transform 0.5s ease;
-          
-          .timeline-card {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-right: 40px;
-            
-            .timeline-point {
-              position: absolute;
-              width: 30px;
-              height: 30px;
-              background-color: #fff;
-              border-radius: 50%;
-              cursor: pointer;
-              transition: transform 0.3s ease;
-              border: 2px solid #000;
-              z-index: 1;
-              left: 50%;
-              transform: translateX(-50%);
-              
-              &:hover {
-                transform: translateX(-50%) scale(1.5);
-              }
-              
-              &.active {
-                background-color: #f00;
-                border-color: #f00;
-                box-shadow: 0 0 10px #f00;
-                
-                .timeline-point-inner {
-                  background-color: #fff;
-                }
-              }
-              
-              .timeline-point-inner {
-                width: 20px;
-                height: 20px;
-                background-color: #000;
-                border-radius: 50%;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-              }
-            }
-            
-            .timeline-date {
-              position: absolute;
-              left: 50%;
-              transform: translateX(-50%);
-              font-size: 18px;
-              font-weight: bold;
-              color: #fff;
-              background-color: rgba(0, 0, 0, 0.7);
-              padding: 5px 10px;
-              border-radius: 5px;
-              white-space: nowrap;
-            }
-            
-            &.top-card {
-              margin-top: -150px;
-              
-              .timeline-point {
-                top: calc(100% + 15px);
-              }
-              
-              .timeline-date {
-                top: calc(100% + 50px);
-              }
-            }
-            
-            &.bottom-card {
-              margin-top: 150px;
-              
-              .timeline-point {
-                bottom: calc(100% + 15px);
-              }
-              
-              .timeline-date {
-                bottom: calc(100% + 50px);
-              }
-            }
-            
-            app-event-card {
-              width: 400px;
-            }
-          }
-        }
-        
-        .timeline-line {
-          position: absolute;
-          top: 50%;
-          left: 0;
-          width: 100%;
-          height: 4px;
-          background-color: #fff;
-          transform: translateY(-50%);
-        }
+  }
+
+  @keyframes ripple {
+    0% {
+      box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 20px rgba(255, 0, 0, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+    }
+  }
+  
+  
+  .date-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.date-marker {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    border: 4px solid #ff0000;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .timeline-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 40px 0;
+  
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .timeline-cards {
+    display: flex;
+    justify-content: space-between;
+    width: fit-content;
+    padding: 0 20px;
+  }
+  
+  app-event-card {
+    width: 300px;
+    margin: 0 20px;
+    opacity: 0.8;
+    transform: scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  
+    &.active {
+      opacity: 1;
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .timeline-navigation {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  
+    .scroll-button {
+      font-size: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin: 0 10px;
+      color: #333;
+      transition: color 0.3s ease;
+  
+      &:hover {
+        color: #ff0000;
       }
-      
-      .timeline-navigation {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-        
-        button {
-          background: none;
-          border: none;
-          font-size: 24px;
-          cursor: pointer;
-          color: #fff;
-          
-          &:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-          }
-        }
+  
+      &:disabled {
+        color: #ccc;
+        cursor: not-allowed;
       }
     }
   }

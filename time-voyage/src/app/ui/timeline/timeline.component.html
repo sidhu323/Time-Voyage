@@ -1,41 +1,32 @@
 <div class="timeline-container">
   <div class="timeline-header">
-    <h2>Timeline</h2>
-    <app-search (searchEvent)="filterEvents($event)"></app-search>
+    <h1>Ideals are peaceful. History is violent.</h1>
   </div>
-  <div class="timeline" #timeline>
-    <div class="timeline-events">
-      <div class="timeline-cards">
-        <div
-          class="timeline-card"
-          *ngFor="let event of visibleEvents; let i = index"
-          [ngClass]="{ 'top-card': i % 2 === 0, 'bottom-card': i % 2 !== 0 }"
-        >
-          <app-event-card
-            [event]="event"
-            [isTopCard]="i % 2 === 0"
-          ></app-event-card>
-          <div class="timeline-point" [ngClass]="{ active: i === activeIndex }">
-            <div class="timeline-point-inner"></div>
-          </div>
-          <div class="timeline-date-title">
-            <div class="timeline-date">{{ event.date }}</div>
-            <div class="timeline-title">{{ event.title }}</div>
-          </div>
-        </div>
-      </div>
-      <div class="timeline-line"></div>
-    </div>
-    <div class="timeline-navigation">
-      <button (click)="scrollLeft()" [disabled]="currentIndex === 0">
-        &#8249;
-      </button>
-      <button
-        (click)="scrollRight()"
-        [disabled]="currentIndex + visibleEventsCount >= filteredEvents.length"
+
+  <div class="timeline-strip">
+    <div class="timeline-line"></div>
+    <div class="timeline-dates">
+      <div
+        class="timeline-date"
+        *ngFor="let event of filteredEvents; let i = index"
+        [class.active]="i === activeIndex"
+        (click)="scrollToEvent(i)"
       >
-        &#8250;
-      </button>
+        <span class="date-text">{{ event.date }}</span>
+        <span class="date-marker"></span>
+      </div>
+    </div>
+  </div>
+  <div class="timeline-wrapper" #timelineWrapper>
+    <div class="timeline-cards">
+      <app-event-card
+        *ngFor="let event of filteredEvents; let i = index"
+        [event]="event"
+        [isTopCard]="i % 2 === 0"
+        [class.active]="i === activeIndex"
+        [@cardAnimation]
+        (click)="onEventCardClick(i)"
+      ></app-event-card>
     </div>
   </div>
 </div>
