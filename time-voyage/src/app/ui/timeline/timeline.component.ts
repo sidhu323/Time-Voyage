@@ -25,6 +25,7 @@ import { EventDetailsComponent } from '../event-details/event-details.component'
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { title } from '../../constants/sample-data';
+import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-timeline',
@@ -71,6 +72,8 @@ export default class TimelineComponent implements OnInit {
   activeIndex = 0;
   isGreen: string = 'true';
   title: string = title;
+  searchSubject = new Subject<string>();
+  searchQuery = '';
 
   @ViewChild('timelineWrapper', { static: true }) timelineWrapper!: ElementRef;
   @ViewChildren(EventCardComponent, { read: ElementRef })
@@ -83,15 +86,32 @@ export default class TimelineComponent implements OnInit {
       this.events = events;
       this.filteredEvents = events;
     });
+    this.searchSubject
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((query) => {
+        this.searchQuery = query;
+        this.filterEvents();
+      });
   }
 
-  filterEvents(query: string) {
-    this.filteredEvents = this.events.filter(
-      (event) =>
-        event.title.toLowerCase().includes(query.toLowerCase()) ||
-        event.date.toLowerCase().includes(query.toLowerCase()) ||
-        event.description.toLowerCase().includes(query.toLowerCase())
-    );
+  onSearch(query: string) {
+    this.searchQuery = query;
+    this.filterEvents();
+  }
+
+  filterEvents() {
+    if (this.searchQuery.trim() === '') {
+      this.filteredEvents = this.events;
+    } else {
+      this.filteredEvents = this.events.filter(
+        (event) =>
+          event.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          event.date.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+          event.description
+            .toLowerCase()
+            .includes(this.searchQuery.toLowerCase())
+      );
+    }
     this.activeIndex = 0;
   }
 
